@@ -6,6 +6,7 @@ export const Header = () => {
     const Header = styled.header`
         // border: 1px solid red;
         display: flex;
+        // flex-direction: column;
         justify-content: space-between;
         align-items: center;
         width: 90%;

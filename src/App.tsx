@@ -3,12 +3,14 @@
 // import viteLogo from '/vite.svg'
 import './App.css'
 import { Header } from "./components/Header"
+import { MainContent } from './pages/Main/MainContent'
 
 function App() {
 
   return (
     <>
       <Header />
+      <MainContent />
     </>
   )
 }
