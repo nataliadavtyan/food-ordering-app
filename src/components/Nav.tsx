@@ -1,14 +1,13 @@
 import styled from "styled-components"
 
 export const Nav = () => {
-    const Navigation = styled.nav`
-
-    `
+    const Navigation = styled.nav``
         
     const NavList = styled.ul`
         list-style: none;
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         gap: 2em;
     `
 
