@@ -1,17 +1,21 @@
-import styled from "styled-components"
-import { Nav } from "./Nav"
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import { Nav } from './Nav'
 
 export const Header = () => {
-
     const Header = styled.header`
         // border: 1px solid red;
         display: flex;
         // flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        width: 90%;
+        width: 90vw;
         margin: 0 auto;
         padding-block: 1em;
+    `
+
+    const StyledLink = styled(Link)`
+        text-decoration: none;
     `
 
     const Title = styled.h1`
@@ -23,8 +27,10 @@ export const Header = () => {
 
     return (
         <Header>
-            <Title>Sunday Pizza</Title>
-            <Nav/>
+            <StyledLink to="/">
+                <Title>Sunday Pizza</Title>
+            </StyledLink>
+            <Nav />
         </Header>
     )
 }
