@@ -9,7 +9,7 @@ const Navigation = styled.nav`
   gap: 2em;
 `;
 
-const StyledLink = styled(NavLink)`
+const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   color: inherit;
   font-size: 1rem;
@@ -17,7 +17,7 @@ const StyledLink = styled(NavLink)`
 `;
 
 export const Nav = () => {
-  const links = [
+  const navLinks = [
     {
       link: "Home",
       to: "/",
@@ -38,10 +38,10 @@ export const Nav = () => {
 
   return (
     <Navigation>
-      {links.map((link, i) => (
-        <StyledLink to={link.to} key={`navlink-${i}`}>
-          {link.link}
-        </StyledLink>
+      {navLinks.map((navLink, i) => (
+        <StyledNavLink to={navLink.to} key={`navlink-${i}`}>
+          {navLink.link}
+        </StyledNavLink>
       ))}
     </Navigation>
   );
