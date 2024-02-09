@@ -7,6 +7,7 @@ const Navigation = styled.nav`
   justify-content: center;
   flex-wrap: wrap;
   gap: 2em;
+  color: ${(props) => props.theme.colors.text};
 `;
 
 const StyledNavLink = styled(NavLink)`

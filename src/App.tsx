@@ -8,7 +8,7 @@ import { MainContent } from "./pages/Main/MainContent";
 import { Order } from "./pages/Order/Order";
 import { Contact } from "./pages/Contact/Contact";
 import { MyProfile } from "./pages/MyProfile/MyProfile";
-import GlobalStyle from "./globalStyles";
+import GlobalStyle from "./globalStyle";
 
 function App() {
   return (
