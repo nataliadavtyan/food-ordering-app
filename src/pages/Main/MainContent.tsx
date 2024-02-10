@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FaAngleRight } from "react-icons/fa6";
+// import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Center = styled.div`
@@ -7,7 +7,7 @@ const Center = styled.div`
   justify-content: center;
   align-items: center;
   height: 80vh;
-  // border: 1px solid green;
+  border: 1px solid green;
 `;
 
 const MainContainer = styled.div`
@@ -19,14 +19,17 @@ const MainContainer = styled.div`
   // width: 70vw;
   gap: 5em;
   padding: 2em;
-  // border: 1px solid blue;
+  border: 1px solid blue;
 `;
 
-const Slogan = styled.p`
+const Slogan = styled.h2`
   font-size: 1.75rem;
+  font-weight: 400;
+  padding: 0;
   white-space: pre-wrap;
   text-align: center;
 `;
+
 const LinkAsButton = styled(Link)`
   text-decoration: none;
   background-color: black;
