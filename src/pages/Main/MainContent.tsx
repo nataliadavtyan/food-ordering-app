@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import { FaAngleRight } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 const Center = styled.div`
@@ -7,7 +7,7 @@ const Center = styled.div`
   justify-content: center;
   align-items: center;
   height: 80vh;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
 
 const MainContainer = styled.div`
@@ -19,7 +19,7 @@ const MainContainer = styled.div`
   // width: 70vw;
   gap: 5em;
   padding: 2em;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 const Slogan = styled.h2`
@@ -46,35 +46,14 @@ const LinkAsButton = styled(Link)`
 `;
 
 export const MainContent = () => {
-  // const Link = ({ className: string, children: string}) => (
-  //     <a className={className}>
-  //         {children}
-  //     </a>
-  // )
-
-  // const Button = styled.button`
-  //     text-decoration: none;
-  //     background-color: black;
-  //     color: white;
-  //     font-size: 1.125rem;
-  //     font-weight: 400;
-  //     padding: 0.75em 1.5em;
-  //     border-radius: 2em;
-  //     cursor: pointer;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  //     gap: 2em;
-  // `
-
   return (
     <Center>
       <MainContainer>
         <Slogan>{`Any day is a Sunday.\nAny day is a pizza day.`}</Slogan>
-        {/* <LinkAsButton>
-                    Order your pizza
-                    <FaAngleRight size="0.75em" />
-                </LinkAsButton> */}
+        <LinkAsButton to="/order">
+          Order your pizza
+          <FaAngleRight size="0.75em" />
+        </LinkAsButton>
       </MainContainer>
     </Center>
   );
