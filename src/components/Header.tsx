@@ -1,7 +1,10 @@
+import { FC, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { NavDesktop } from "./NavDesktop";
-import { NavMobile } from "./NavMobile";
+import { NavDesktop } from "./Navigation/Desktop/NavDesktop";
+import { Burger } from "./Navigation/Mobile/Burger";
+import { Menu } from "./Navigation/Mobile/Menu";
+// import { NavMobile } from "./Navigation/NavMobile";
 // import { theme } from "../theme.tsx";
 
 const StyledHeader = styled.header`
@@ -14,6 +17,8 @@ const StyledHeader = styled.header`
   /* width: 100%; */
   padding: 1em 2em;
   margin: 0 auto;
+  /* position: relative;
+  width: 100vw; */
   /* padding-block: 1em; */
 `;
 
@@ -28,14 +33,19 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-export const Header = () => {
+export const Header: FC = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <StyledHeader>
       <StyledLink to="/">
         <Title>Sunday Pizza</Title>
       </StyledLink>
-      <NavDesktop />
-      <NavMobile />
+      <div>
+        {/* <NavDesktop /> */}
+        <Burger open={open} setOpen={setOpen} />
+        <Menu open={open} />
+      </div>
     </StyledHeader>
   );
 };

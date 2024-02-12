@@ -1,21 +1,23 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { navRoutes } from "../navRoutes";
 
 const Navigation = styled.nav`
-  display: none;
+  display: block;
 
   ul {
     list-style: none;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     gap: 2em;
     margin-top: 0.875em;
     color: ${({ theme }) => theme.color.text};
   }
 
-  @media (min-width: ${({ theme }) => theme.breakpoint.md}) {
-    display: block;
-    border: 1px solid red;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    display: none;
+    /* border: 1px solid red; */
   }
 `;
 
@@ -27,32 +29,13 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 export const NavDesktop = () => {
-  const navLinks = [
-    {
-      title: "Home",
-      path: "/",
-    },
-    {
-      title: "Order",
-      path: "/order",
-    },
-    {
-      title: "Contact",
-      path: "/contact",
-    },
-    {
-      title: "My Profile",
-      path: "/my-profile",
-    },
-  ];
-
   return (
     <Navigation>
       <ul>
-        {navLinks.map((navLink, i) => (
+        {navRoutes.map((route, i) => (
           <li>
-            <StyledNavLink to={navLink.path} key={`navlink-${i}`}>
-              {navLink.title}
+            <StyledNavLink to={route.path} key={`nav-${i}`}>
+              {route.title}
             </StyledNavLink>
           </li>
         ))}
