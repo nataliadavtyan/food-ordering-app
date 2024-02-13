@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
         -moz-osx-font-smoothing: grayscale;
         background-color: ${({ theme }) => theme.color.bgColor};
         height: 100vh;
+        overflow-x: hidden;
     }
 `;
 
