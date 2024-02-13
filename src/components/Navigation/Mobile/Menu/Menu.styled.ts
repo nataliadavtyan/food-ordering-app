@@ -1,12 +1,8 @@
 import styled from "styled-components";
-import { MenuProps } from "./Menu";
 
-export const StyledMenu = styled.nav<MenuProps>`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: lightgray;
-    /* background: ${({open}) => open ? "green" : "yellow"}; */
+export const StyledMenu = styled.nav<{open: boolean}>`
+    width: 25%;
+    background: ${({theme}) => theme.color.menuBg};
     height: 100vh;
     text-align: center;
     padding: 2rem;
@@ -18,30 +14,24 @@ export const StyledMenu = styled.nav<MenuProps>`
     
     @media (max-width: ${({theme}) => theme.breakpoint.md}) {
         width: 100%;
-        /* display: ${({open}) => open ? "flex" : "none"} */
     }
-
+    
     ul {
+        color: white;
         list-style: none;
-        /* height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        gap: 4vh;
-        margin-top: 0.875em; */
-        /* color: ${({ theme }) => theme.color.text}; */
-        /* text-align: left; */
+        align-items: center;
+        height: 100%;
+        gap: 2em;
     }
 
     a {
         text-decoration: none;
         color: inherit;
-        /* color: white; */
-        /* font-size: 7vw; */
         font-size: 2rem;
         font-weight: 400;
-        /* width: 100%; */
         transition: transform 0.3s linear;
 
         /* @media (max-width: ${({theme}) => theme.breakpoint.md}) {

@@ -1,23 +1,20 @@
 import styled from "styled-components";
-// import { BurgerProps } from "./Burger";
 
 export const StyledBurger = styled.div<{open: boolean}>`
     position: absolute;
-    top: 5%;
+    top: 3.5%;
     right: 2rem;
     display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 2rem;
     height: 2rem;
-    /* background-color: transparent; */
-    /* background-color: ${({open}) => open ? "green" : "yellow"}; */
     cursor: pointer;
     z-index: 10;
 
-    @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-        display: flex;
-    }
+    /* @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    } */
 
     div {
         width: 2rem;
@@ -25,20 +22,19 @@ export const StyledBurger = styled.div<{open: boolean}>`
         background-color: ${({theme}) => theme.color.main};
         border-radius: 10px;
         transition: all 0.3s linear;
-        /* unclear */
-        transform-origin: 1px;
+        /* sets the side of reference */
+        transform-origin: right;
 
         &:first-child {
-            transform: ${({open}) => open ? 'rotate(45deg)' : 'rotate(0)'};
+            transform: ${({open}) => open ? 'rotate(-45deg)' : 'rotate(0)'};
         }
 
         &:nth-child(2) {
             opacity: ${({open}) => open ? '0' : '1'};
-            /* transform: ${({open}) => open ? 'translateX(20px)' : 'translateX(0)'}; */
         }
 
         &:nth-child(3) {
-            transform: ${({open}) => open ? 'rotate(-45deg)' : 'rotate(0)'};
+            transform: ${({open}) => open ? 'rotate(45deg)' : 'rotate(0)'};
         }
     }
 `
