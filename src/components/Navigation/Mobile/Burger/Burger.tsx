@@ -1,12 +1,8 @@
 import { FC } from "react";
 import { StyledBurger } from "./Burger.styled";
+import { MenuProps } from "../../../Header";
 
-export interface BurgerProps {
-  open: boolean;
-  setOpen: (open: boolean) => void;
-}
-
-export const Burger: FC<BurgerProps> = ({ open, setOpen }) => {
+export const Burger: FC<MenuProps> = ({ open, setOpen }) => {
   console.log(open);
   return (
     <StyledBurger open={open} onClick={() => setOpen(!open)}>

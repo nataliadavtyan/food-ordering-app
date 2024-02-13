@@ -2,17 +2,14 @@ import { Link } from "react-router-dom";
 import { navRoutes } from "../../navRoutes";
 import { StyledMenu } from "./Menu.styled";
 import { FC } from "react";
+import { MenuProps } from "../../../Header";
 
-export interface MenuProps {
-  open: boolean;
-}
-
-export const Menu: FC<MenuProps> = ({ open }) => {
+export const Menu: FC<MenuProps> = ({ open, setOpen }) => {
   return (
     <StyledMenu open={open}>
       <ul>
         {navRoutes.map((route, i) => (
-          <li key={`nav-${i}`}>
+          <li key={`nav-${i}`} onClick={() => setOpen(!open)}>
             <Link to={route.path}>{route.title}</Link>
           </li>
         ))}
