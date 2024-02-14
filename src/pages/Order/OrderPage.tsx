@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { MenuItem } from "./MenuItem";
+import { useFetch } from "./useFetch";
 
 export interface Pizza {
+  // map: any;
+  // map(arg0: (pizza: Pizza) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
   country?: string;
   dsc?: string;
   id: string;
@@ -24,40 +27,11 @@ const StyledOrderPage = styled.div`
 `;
 
 export const OrderPage = () => {
-  const [pizzaData, setPizzaData] = useState<Pizza[]>([]);
   const PIZZAS_API = "https://adorable-bat-fatigues.cyclic.app/pizzas";
+  const pizzaData = useFetch(PIZZAS_API);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(PIZZAS_API);
-        const data: Pizza[] = await response.json();
-        // console.log(data);
-        return data;
-      } catch (error) {
-        console.error("Something went wrong with fetching", error);
-        // throw error;
-      }
-    };
-    fetchData().then((data: any) => {
-      // Remove pizzerias and apizzas
-      const pizzasOnly = data.filter((item: Pizza) =>
-        item.name.toLowerCase().split(" ").includes("pizza")
-      );
-      // const pizzasNoDuplicates = pizzasOnly.filter(
-      //   (item: Pizza, index: number, self: Pizza[]) =>
-      //     index === self.findIndex((it: Pizza) => it.name === item.name)
-      // );
-
-      // Another way of removing pizzas with the same names
-      const pizzasNoDuplicates = Array.from(
-        new Set(pizzasOnly.map((a: Pizza) => a.name))
-      ).map((name) => {
-        return pizzasOnly.find((a: Pizza) => a.name === name);
-      });
-      setPizzaData(pizzasNoDuplicates);
-    });
-  }, []);
+  // is it ok that it is being logged out 4 times?
+  console.log(pizzaData, "w");
 
   return (
     <div>
