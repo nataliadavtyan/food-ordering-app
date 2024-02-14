@@ -12,6 +12,7 @@ export const StyledBurgerMenu = styled.nav<{open: boolean}>`
     transition: transform 0.3s ease-in-out;
     overflow-x: hidden;
     transform: ${({open}) => open ? 'translateX(0)' : 'translateX(100%)'};
+    z-index: 9;
     
     @media (max-width: ${({theme}) => theme.breakpoint.md}) {
         width: 100%;
