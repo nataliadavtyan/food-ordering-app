@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import { navRoutes } from "../../navRoutes";
-import { StyledMenu } from "./Menu.styled";
+import { navRoutes } from "./navRoutes";
+import { StyledBurgerMenu } from "./BurgerMenu.styled";
 import { FC } from "react";
-import { MenuProps } from "../../../Header";
+import { BurgerMenuProps } from "../Header";
 
-export const Menu: FC<MenuProps> = ({ open, setOpen }) => {
+export const BurgerMenu: FC<BurgerMenuProps> = ({ open, setOpen }) => {
   return (
-    <StyledMenu open={open}>
+    <StyledBurgerMenu open={open}>
       <ul>
         {navRoutes.map((route, i) => (
           <li key={`nav-${i}`} onClick={() => setOpen(!open)}>
@@ -14,6 +14,6 @@ export const Menu: FC<MenuProps> = ({ open, setOpen }) => {
           </li>
         ))}
       </ul>
-    </StyledMenu>
+    </StyledBurgerMenu>
   );
 };

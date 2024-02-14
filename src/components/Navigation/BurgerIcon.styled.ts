@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const StyledBurger = styled.div<{open: boolean}>`
+export const StyledBurgerIcon = styled.button<{open: boolean}>`
     position: absolute;
-    top: 3.5%;
-    right: 2rem;
-    display: none;
+    top: 1.75em;
+    right: 1.5em;
+    border: 1px solid blue;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -12,9 +12,8 @@ export const StyledBurger = styled.div<{open: boolean}>`
     height: 2rem;
     cursor: pointer;
     z-index: 10;
-
-    /* @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
-    } */
+    border: none;
+    background-color: transparent;
 
     div {
         width: 2rem;

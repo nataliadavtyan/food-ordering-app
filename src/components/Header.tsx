@@ -1,15 +1,14 @@
 import { FC, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Burger } from "./Navigation/Mobile/Burger";
-import { Menu } from "./Navigation/Mobile/Menu";
+import { BurgerIcon } from "./Navigation/BurgerIcon";
+import { BurgerMenu } from "./Navigation/BurgerMenu";
 
 const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1em 2em;
-  margin: 0 auto;
 
   a {
     text-decoration: none;
@@ -19,11 +18,11 @@ const StyledHeader = styled.header`
     color: ${({ theme }) => theme.color.main};
     font-size: 2.25rem;
     font-weight: 800;
-    text-align: center;
+    text-align: left;
   }
 `;
 
-export interface MenuProps {
+export interface BurgerMenuProps {
   open: boolean;
   setOpen: (open: boolean) => void;
 }
@@ -37,8 +36,8 @@ export const Header: FC = () => {
         <h1>Sunday Pizza</h1>
       </Link>
       <div>
-        <Burger open={open} setOpen={setOpen} />
-        <Menu open={open} setOpen={setOpen} />
+        <BurgerIcon open={open} setOpen={setOpen} />
+        <BurgerMenu open={open} setOpen={setOpen} />
       </div>
     </StyledHeader>
   );
