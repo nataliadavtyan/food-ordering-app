@@ -32,7 +32,13 @@ export const useFetch = (url: string) => {
       ).map((name) => {
         return pizzasOnly.find((item: Pizza) => item.name === name);
       });
-      setFetchedData(pizzasNoDuplicates);
+
+      // add quantity to each pizza
+      const addedQuantity = pizzasNoDuplicates.map((pizza: Pizza) => ({
+        ...pizza,
+        quantity: 0,
+      }));
+      setFetchedData(addedQuantity);
     });
   }, []);
 

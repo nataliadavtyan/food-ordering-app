@@ -1,9 +1,10 @@
-import { FC } from "react";
 import styled from "styled-components";
+import { FC, useContext } from "react";
 import PizzaImgFallback from "../../assets/pizza-img-fallback.jpg";
 import { Pizza } from "./OrderPage";
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
+import { OrderContext } from "./OrderPage";
 
 const StyledMenuItem = styled.div`
   /* border: 1px solid red; */
@@ -71,8 +72,9 @@ const AddToBasketPanel = styled.div`
   }
 `;
 
-export const MenuItem: FC<Pizza> = ({ name, price, img }) => {
+export const MenuItem: FC<Pizza> = ({ id, name, price, img, quantity }) => {
   const priceInEuro = (price / 10).toFixed(2);
+  const { addToOrder, removeFromOrder } = useContext(OrderContext);
 
   return (
     <StyledMenuItem>
@@ -86,15 +88,23 @@ export const MenuItem: FC<Pizza> = ({ name, price, img }) => {
       <div className="menu-item-description">
         <h3>{name}</h3>
         <p>€{priceInEuro}</p>
-        <AddToBasketPanel>
-          <button>
-            <FaMinus />
-          </button>
-          <p>0</p>
-          <button>
-            <FaPlus />
-          </button>
-        </AddToBasketPanel>
+        {quantity ? (
+          <AddToBasketPanel>
+            <button onClick={() => removeFromOrder(id)}>
+              <FaMinus />
+            </button>
+            <p>{quantity}</p>
+            <button onClick={() => addToOrder(id)}>
+              <FaPlus />
+            </button>
+          </AddToBasketPanel>
+        ) : (
+          <AddToBasketPanel>
+            <button onClick={() => addToOrder(id)}>
+              <FaPlus />
+            </button>
+          </AddToBasketPanel>
+        )}
       </div>
     </StyledMenuItem>
   );
