@@ -17,13 +17,10 @@ const StyledOrderPage = styled.div`
 
 export interface Pizza {
   id: string;
-  img: string;
   name: string;
   price: number;
   quantity: number;
-  rate?: number;
-  country?: string;
-  dsc?: string;
+  img: string;
 }
 
 interface OrderContextType {
@@ -40,7 +37,7 @@ export const OrderPage = () => {
   const [order, setOrder] = useState<Pizza[]>([]);
   // is it ok that it is being logged out 4-6 times?
   // console.log(pizzaData, "w");
-  // console.log(order);
+  console.log(order);
 
   useEffect(() => {
     if (pizzaData) {
