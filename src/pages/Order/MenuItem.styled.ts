@@ -24,7 +24,6 @@ const StyledMenuItem = styled.div`
 
   div.menu-item-description {
     padding: 1em 0.75em;
-    border: 1px solid red;
     position: relative;
   }
 
@@ -42,7 +41,6 @@ const AddToBasketPanel = styled.div`
   position: absolute;
   bottom: 1em;
   right: 0.75em;
-  border: 1px solid blue;
 
   button {
     font-size: 1rem;
