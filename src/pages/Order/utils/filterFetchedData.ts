@@ -1,4 +1,5 @@
 import { FetchedMenuItem } from "../hooks/useFetchData";
+import { removeDuplicates } from "./removeDuplicates";
 
 export const filterFetchedData = (
   data: FetchedMenuItem[],
@@ -23,15 +24,15 @@ export const filterFetchedData = (
       return specificDessertsOnly;
     });
     return removeDuplicates(selectedDesserts);
-  }
-
-  //   remove duplicates
-  function removeDuplicates(itemsArray: FetchedMenuItem[]) {
-    const itemsNoDuplicates = itemsArray.filter(
-      (item: FetchedMenuItem, index: number, self: FetchedMenuItem[]) =>
-        index === self.findIndex((it: FetchedMenuItem) => it.name === item.name)
-    );
-    return itemsNoDuplicates;
+  } else if (category === "drinks") {
+    // Only get selected categories of drinks
+    const selectedDrinks = data.filter((item: FetchedMenuItem) => {
+      const splitItemName = item.name.toLowerCase().split(" ");
+      const specificDrinksOnly =
+        splitItemName.includes("juice") || splitItemName.includes("coffee");
+      return specificDrinksOnly;
+    });
+    return removeDuplicates(selectedDrinks);
   }
 };
 
