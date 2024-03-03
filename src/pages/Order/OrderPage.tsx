@@ -1,30 +1,17 @@
 import { createContext, useEffect, useState } from "react";
-import styled from "styled-components";
 import { MenuItem } from "./MenuItem";
-import { useFetch } from "./useFetch";
+import { FetchedMenuItem, useFetchData } from "./hooks/useFetchData";
+import { FaTheRedYeti } from "react-icons/fa6";
+import { StyledMenu, StyledOrderFilters } from "./OrderPage.styled";
 
-const StyledOrderPage = styled.div`
-  width: 90vw;
-  max-width: 900px;
-  margin: 0 auto;
-  /* border: 1px solid blue; */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2em;
-  padding-block: 2em;
-  /* grid-template-columns: repeat(3, minmax(250px, 1frc)); */
-`;
-
-export interface Pizza {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  img: string;
+export interface Item extends FetchedMenuItem {
+  quantity?: number;
+  // addToUserOrder: (id: string) => void;
 }
 
 interface OrderContextType {
-  order: Pizza[];
+  fullMenu: Item[];
+  // quantity: number;
   addToOrder: (id: string) => void;
   removeFromOrder: (id: string) => void;
 }
@@ -32,45 +19,81 @@ interface OrderContextType {
 const OrderContext = createContext<OrderContextType>(null!);
 
 export const OrderPage = () => {
-  const PIZZAS_API = "https://adorable-bat-fatigues.cyclic.app/pizzas";
-  const pizzaData = useFetch(PIZZAS_API);
-  const [order, setOrder] = useState<Pizza[]>([]);
-  // is it ok that it is being logged out 4-6 times?
-  // console.log(pizzaData, "w");
-  console.log(order);
+  const [selectedFilterCategory, setSelectedFilterCategory] =
+    useState("pizzas");
+  const selectedCategoryData = useFetchData(selectedFilterCategory);
+  const [userOrder, setUserOrder] = useState<Item[]>();
+  // console.log(selectedFilterCategory);
+  // const [fullMenu, setFullMenu] = useState<Item[]>([]);
+  // const storedOrderData: string | null = JSON.parse(
+  //   localStorage.getItem("userOrder")
+  // );
+  // const [userOrder, setUserOrder] = useState<Pizza[]>(
+  //   JSON.parse(localStorage.getItem("userOrder")) || []
+  // );
 
-  useEffect(() => {
-    if (pizzaData) {
-      setOrder(pizzaData);
-    }
-  }, [pizzaData]);
+  const orderFilters = ["pizzas", "desserts", "drinks"];
+  const orderFiltersEls = orderFilters.map((filter, i) => (
+    <button key={i} onClick={() => setSelectedFilterCategory(filter)}>
+      {filter}
+    </button>
+  ));
+  // console.log(selectedFilterCategory);
 
-  function addToOrder(id: string): void {
-    setOrder((prevOrder) => {
-      return prevOrder.map((pizza) =>
-        pizza.id === id ? { ...pizza, quantity: pizza.quantity + 1 } : pizza
-      );
-    });
-  }
+  // useEffect(() => {
+  //   // setUserOrder(() => {
+  //   let filteredOrder = fullMenu.filter((item: Item) => item.quantity > 0);
+  //   localStorage.setItem("userOrder", JSON.stringify(filteredOrder));
+  //   // });
+  // }, [fullMenu]);
 
-  function removeFromOrder(id: string): void {
-    setOrder((prevOrder) => {
-      return prevOrder.map((pizza) =>
-        pizza.id === id ? { ...pizza, quantity: pizza.quantity - 1 } : pizza
-      );
-    });
-  }
+  // useEffect(() => {
+  //   if (pizzaData) {
+  //     setFullMenu(pizzaData);
+  //   }
+  // }, [pizzaData]);
+
+  // function addToOrder(id: string): void {
+  //   setFullMenu((prevFullMenu) => {
+  //     return prevFullMenu.map((pizza) =>
+  //       pizza.id === id ? { ...pizza, quantity: pizza.quantity + 1 } : pizza
+  //     );
+  //   });
+  // }
+  // function addToUserOrder(id: string): void {
+  // check if the selected item exists in the order
+  // if it does exist there, update the quantity
+  // if it doesn't, push the item to the order and add quantity
+  //   const clickedMenuItem = pizzaData!.find((item) => item.id === id)!;
+  //   if (userOrder?.some((item) => item.id === clickedMenuItem.id)) {
+  //     setUserOrder((prevUserOrder: Item[]) => [
+  //       ...prevUserOrder,
+  //       { ...clickedMenuItem, quantity: clickedMenuItem.quantity + 1 },
+  //     ]);
+  //   }
+  // }
+  // function removeFromUserOrder(id: string): void {
+  //   setFullMenu((prevFullMenu) => {
+  //     return prevFullMenu.map((pizza) =>
+  //       pizza.id === id ? { ...pizza, quantity: pizza.quantity - 1 } : pizza
+  //     );
+  //   });
+  // }
 
   // console.log(order, order.length);
 
   return (
-    <OrderContext.Provider value={{ order, addToOrder, removeFromOrder }}>
-      <StyledOrderPage>
-        {order.map((pizza: Pizza) => (
-          <MenuItem key={pizza.id} {...pizza} />
-        ))}
-      </StyledOrderPage>
-    </OrderContext.Provider>
+    // <OrderConext.Provider value={{ fullMenu, addToOrder, removeFromOrder }}>
+    <>
+      <StyledOrderFilters>{orderFiltersEls}</StyledOrderFilters>
+      <StyledMenu>
+        {selectedCategoryData &&
+          selectedCategoryData.map((item: FetchedMenuItem) => (
+            <MenuItem key={item.id} {...item} />
+          ))}
+      </StyledMenu>
+    </>
+    // </OrderContext.Provider>
   );
 };
 

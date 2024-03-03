@@ -36,7 +36,7 @@ export const useFetchData = (category: string) => {
         // handle error
       }
     });
-  }, []);
+  }, [category]);
 
   return fetchedData;
 };
