@@ -3,8 +3,8 @@
 // import viteLogo from '/vite.svg'
 // import './App.css'
 import { RouterProvider } from "react-router-dom";
-import GlobalStyle from "./globalStyle";
 import { router } from "./routes/router";
+import GlobalStyle from "./styles/globalStyle";
 
 function App() {
   return (
