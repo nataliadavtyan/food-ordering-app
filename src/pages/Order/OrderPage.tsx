@@ -2,7 +2,11 @@ import { createContext, useEffect, useState } from "react";
 import { MenuItem } from "./MenuItem";
 import { FetchedMenuItem, useFetchData } from "./hooks/useFetchData";
 import { FaTheRedYeti } from "react-icons/fa6";
-import { StyledMenu, StyledOrderFilters } from "./OrderPage.styled";
+import {
+  FilterButton,
+  StyledMenu,
+  StyledOrderFilters,
+} from "./OrderPage.styled";
 
 export interface Item extends FetchedMenuItem {
   quantity?: number;
@@ -34,9 +38,13 @@ export const OrderPage = () => {
 
   const orderFilters = ["pizzas", "desserts", "drinks"];
   const orderFiltersEls = orderFilters.map((filter, i) => (
-    <button key={i} onClick={() => setSelectedFilterCategory(filter)}>
+    <FilterButton
+      key={i}
+      onClick={() => setSelectedFilterCategory(filter)}
+      $isSelected={filter === selectedFilterCategory}
+    >
       {filter}
-    </button>
+    </FilterButton>
   ));
   // console.log(selectedFilterCategory);
 
