@@ -1,7 +1,7 @@
 # Sunday Pizza
 Fictional food ordering app
 
-## Technoligies
+## Technologies
 React\
 React Router (my first project)\
 TypeScript (my first project)\
@@ -9,7 +9,7 @@ Styled Components (my first project)\
 Vite
 
 ## Status
-Currently wip
+work in progress
 
 ## Estimated finishing time
 March - April 2024
