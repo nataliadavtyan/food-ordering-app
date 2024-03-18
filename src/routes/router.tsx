@@ -3,8 +3,8 @@ import { Root } from "../components/Root";
 import { ErrorPage } from "../pages/Error/ErrorPage";
 // import { Layout } from "./components/Root";
 import { MainContent } from "../pages/Main/MainContent";
-import { Order } from "../pages/Order/Order";
-import { Contact } from "../pages/Contact/Contact";
+import { OrderPage } from "../pages/Order/OrderPage";
+import { ContactPage } from "../pages/Contact/ContactPage";
 import { MyProfile } from "../pages/MyProfile/MyProfile";
 
 export const router = createBrowserRouter([
@@ -19,11 +19,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/order",
-        element: <Order />,
+        element: <OrderPage />,
       },
       {
         path: "/contact",
-        element: <Contact />,
+        element: <ContactPage />,
       },
       {
         path: "/my-profile",
