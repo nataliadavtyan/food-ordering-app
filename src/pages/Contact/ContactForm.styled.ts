@@ -5,10 +5,16 @@ export const StyledContactForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   background-color: #ffffff;
   padding: 2em;
   border-radius: 16px;
+
+  label {
+    font-size: 1.125rem;
+    margin-bottom: 0.5em;
+    margin-left: 0.375em;
+  }
 
   input,
   textarea {
@@ -44,15 +50,25 @@ export const StyledContactForm = styled.form`
     &:hover {
       background: ${({ theme }) => theme.color.main};
     }
+  }
 
-    p {
-      color: red;
+  p {
+    font-size: 0.875rem;
+    line-height: 1.25;
+    color: ${({ theme }) => theme.color.inactiveText};
+    margin-bottom: 0.75em;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
-  label {
-    font-size: 1.125rem;
-    margin-bottom: 0.5em;
-    margin-left: 0.375em;
+  a {
+    text-underline-offset: 0.25em;
+    color: inherit;
+
+    &:hover {
+      color: ${({ theme }) => theme.color.main};
+    }
   }
 `;

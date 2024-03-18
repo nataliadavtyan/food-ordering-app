@@ -62,6 +62,14 @@ export const ContactForm = () => {
         not exist. If you are looking for a place to eat a good pizza in
         Barcelona on Sunday, one of my favourite places is Parking Pizza.
       </p>
+      <p>
+        And if you found a bug or would like to see more of my projects, please
+        send me a message by filling out this form or visit my{" "}
+        <a href="https://www.linkedin.com/in/nataliadavtyan/" target="_blank">
+          LinkedIn
+        </a>
+        .
+      </p>
     </StyledContactForm>
   );
 };
