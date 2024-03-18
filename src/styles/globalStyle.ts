@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
+    input, textarea {
+        font-family: inherit;
+    }
+
     img {
         display: block;
     }
