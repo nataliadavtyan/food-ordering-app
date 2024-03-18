@@ -33,12 +33,35 @@ export const ContactForm = () => {
   return (
     <StyledContactForm ref={form} onSubmit={sendEmail}>
       <label htmlFor="from_name">Name</label>
-      <input type="text" name="from_name" id="from_name" required />
+      <input
+        type="text"
+        name="from_name"
+        id="from_name"
+        placeholder="Enter you name"
+        required
+      />
       <label htmlFor="from_email">Email</label>
-      <input type="email" name="from_email" id="from_email" required />
+      <input
+        type="email"
+        name="from_email"
+        id="from_email"
+        placeholder="Enter your email"
+        required
+      />
       <label htmlFor="message">Message</label>
-      <textarea name="message" id="message" required />
-      <input type="submit" value="Send" />
+      <textarea
+        name="message"
+        id="message"
+        placeholder="Enter a message"
+        rows={5}
+        required
+      />
+      <button type="submit">Send</button>
+      <p>
+        Please note that this is a fictional restaurant which means that it does
+        not exist. If you are looking for a place to eat a good pizza in
+        Barcelona on Sunday, one of my favourite places is Parking Pizza.
+      </p>
     </StyledContactForm>
   );
 };
