@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
   padding-block: 1em;
-  /* width: 95vw; */
+  width: 95%;
   margin: 0 auto;
 
   a {
