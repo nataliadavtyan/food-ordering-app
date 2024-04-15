@@ -1,40 +1,36 @@
-import { createContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { MenuItem } from "./MenuItem";
 import { FetchedMenuItem, useFetchData } from "./hooks/useFetchData";
-import { FaTheRedYeti } from "react-icons/fa6";
 import {
   FilterButton,
   StyledMenu,
   StyledOrderFilters,
 } from "./OrderPage.styled";
+import { Loading } from "../../components/Loading";
+import { formatData } from "./utils/formatData";
 
-export interface Item extends FetchedMenuItem {
-  quantity?: number;
+export interface UserOrderItem {
+  id: string;
+  quantity: number;
   // addToUserOrder: (id: string) => void;
 }
 
-interface OrderContextType {
-  fullMenu: Item[];
-  // quantity: number;
-  addToOrder: (id: string) => void;
-  removeFromOrder: (id: string) => void;
+interface RenderedMenuItem extends FetchedMenuItem {
+  quantity?: number;
 }
-
-const OrderContext = createContext<OrderContextType>(null!);
 
 export const OrderPage = () => {
   const [selectedFilterCategory, setSelectedFilterCategory] =
     useState("pizzas");
-  const selectedCategoryData = useFetchData(selectedFilterCategory);
-  const [userOrder, setUserOrder] = useState<Item[]>();
-  // console.log(selectedFilterCategory);
-  // const [fullMenu, setFullMenu] = useState<Item[]>([]);
-  // const storedOrderData: string | null = JSON.parse(
-  //   localStorage.getItem("userOrder")
-  // );
-  // const [userOrder, setUserOrder] = useState<Pizza[]>(
-  //   JSON.parse(localStorage.getItem("userOrder")) || []
-  // );
+  // const selectedCategoryData = useFetchData(selectedFilterCategory);
+  const [selectedCategoryData, isLoading] = useFetchData(
+    selectedFilterCategory
+  );
+
+  const [userOrder, setUserOrder] = useState<UserOrderItem[]>([
+    { id: "2-lou-malnatis-deep-dish-pizzas", quantity: 1 },
+    { id: "brooklyn-pizza-choose-your-own-5-pack", quantity: 2 },
+  ]);
 
   const orderFilters = ["pizzas", "desserts", "drinks"];
   const orderFiltersEls = orderFilters.map((filter, i) => (
@@ -46,63 +42,42 @@ export const OrderPage = () => {
       {filter}
     </FilterButton>
   ));
-  // console.log(selectedFilterCategory);
 
-  // useEffect(() => {
-  //   // setUserOrder(() => {
-  //   let filteredOrder = fullMenu.filter((item: Item) => item.quantity > 0);
-  //   localStorage.setItem("userOrder", JSON.stringify(filteredOrder));
-  //   // });
-  // }, [fullMenu]);
-
-  // useEffect(() => {
-  //   if (pizzaData) {
-  //     setFullMenu(pizzaData);
-  //   }
-  // }, [pizzaData]);
-
-  // function addToOrder(id: string): void {
-  //   setFullMenu((prevFullMenu) => {
-  //     return prevFullMenu.map((pizza) =>
-  //       pizza.id === id ? { ...pizza, quantity: pizza.quantity + 1 } : pizza
-  //     );
-  //   });
-  // }
-  // function addToUserOrder(id: string): void {
-  // check if the selected item exists in the order
-  // if it does exist there, update the quantity
-  // if it doesn't, push the item to the order and add quantity
-  //   const clickedMenuItem = pizzaData!.find((item) => item.id === id)!;
-  //   if (userOrder?.some((item) => item.id === clickedMenuItem.id)) {
-  //     setUserOrder((prevUserOrder: Item[]) => [
-  //       ...prevUserOrder,
-  //       { ...clickedMenuItem, quantity: clickedMenuItem.quantity + 1 },
-  //     ]);
-  //   }
-  // }
-  // function removeFromUserOrder(id: string): void {
-  //   setFullMenu((prevFullMenu) => {
-  //     return prevFullMenu.map((pizza) =>
-  //       pizza.id === id ? { ...pizza, quantity: pizza.quantity - 1 } : pizza
-  //     );
-  //   });
-  // }
-
-  // console.log(order, order.length);
+  const filteredSelectedCategoryData =
+    selectedCategoryData &&
+    formatData(selectedCategoryData, selectedFilterCategory);
 
   return (
-    // <OrderConext.Provider value={{ fullMenu, addToOrder, removeFromOrder }}>
+    // <OrderContext.Provider value={{ userOrder, addToUserOrder }}>
     <>
       <StyledOrderFilters>{orderFiltersEls}</StyledOrderFilters>
       <StyledMenu>
-        {selectedCategoryData &&
-          selectedCategoryData.map((item: FetchedMenuItem) => (
-            <MenuItem key={item.id} {...item} />
-          ))}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          filteredSelectedCategoryData?.map((item: FetchedMenuItem) => (
+            <MenuItem
+              key={item.id}
+              quantity={
+                userOrder.find((orderItem) => orderItem.id === item.id)
+                  ?.quantity || undefined
+              }
+              {...item}
+              // addToUserOrder={addToUserOrder}
+            />
+          ))
+        )}
       </StyledMenu>
     </>
     // </OrderContext.Provider>
   );
 };
 
-export { OrderContext };
+// interface OrderContextType {
+//   userOrder: Item[];
+//   // quantity: number;
+//   addToOrder: (id: string) => void;
+//   removeFromOrder?: (id: string) => void;
+// }
+
+// const OrderContext = createContext<OrderContextType>(null!);
